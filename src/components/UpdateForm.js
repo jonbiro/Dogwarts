@@ -11,7 +11,7 @@ class UpdateForm extends React.Component {
   };
 
   handleSelectChange = event => {
-  	console.log(this.props)
+    console.log(this.props);
     let bob = () => {
       if (event.target.value === "Roverclaw") {
         return 3;

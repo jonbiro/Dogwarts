@@ -14,16 +14,25 @@ class PuppyCard extends React.Component {
   };
 
   render() {
-  	// console.log(this.props)
+    // console.log(this.props)
     return (
-      <div>
-        <Card image={this.props.image} header={this.props.puppy.name} onClick={this.handleHouseClick} />
+      <div className="pupCard">
+        <Card
+          className="ui container center aligned"
+          image={this.props.image}
+          header={this.props.puppy.name}
+          onClick={this.handleHouseClick}
+        />
 
         <div>
           {this.state.showForm && !this.props.nope ? (
-            <UpdateForm houses={this.props.houses} puppy={this.props.puppy} handleHouseClick={this.handleHouseClick} houseChange={this.props.houseChange}/>
-          ) : (null
-          )}
+            <UpdateForm
+              houses={this.props.houses}
+              puppy={this.props.puppy}
+              handleHouseClick={this.handleHouseClick}
+              houseChange={this.props.houseChange}
+            />
+          ) : null}
         </div>
       </div>
     );

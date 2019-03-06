@@ -2,10 +2,6 @@ import React from "react";
 import PuppyCard from "./PuppyCard";
 
 const House = props => {
-  // const renderAdditionalInfo = (puppy, func) => {
-  //   return <PuppyDetails puppy={puppy} handleHouseClick={func} />;
-  // };
-
   let puppies = props.puppies.map(puppy => (
     <PuppyCard
       key={puppy.id}
@@ -27,13 +23,21 @@ const House = props => {
 
   const bob = () => {
     if (props.house === "Gryffindog") {
-      return <img width="400px" src={gryf} alt={props.house} />;
+      return (
+        <img className="roundme" width="400px" src={gryf} alt={props.house} />
+      );
     } else if (props.house === "Roverclaw") {
-      return <img width="400px" src={rover} alt={props.house} />;
+      return (
+        <img className="roundme" width="400px" src={rover} alt={props.house} />
+      );
     } else if (props.house === "Slobberin") {
-      return <img width="400px" src={slob} alt={props.house} />;
+      return (
+        <img className="roundme" width="400px" src={slob} alt={props.house} />
+      );
     } else if (props.house === "Rufflepuff") {
-      return <img width="400px" src={ruff} alt={props.house} />;
+      return (
+        <img className="roundme" width="400px" src={ruff} alt={props.house} />
+      );
     }
   };
 

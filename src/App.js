@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   houseChange = (puppy, newHouse) => {
-  	// console.log((newHouse))
+    // console.log((newHouse))
     fetch(`http://localhost:3005/puppies/${puppy.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
@@ -115,33 +115,33 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div>
         <NavBar />
         <br />
-        <NewPuppyForm addPuppy={this.addPuppy} houses={this.state.houses} />
-        <hr />
-        <section className="search-form">
-          <input
-            type="text"
-            name="searchTerm"
-            placeholder="Search the Pups"
-            value={this.state.searchTerm}
-            onChange={this.handleChange}
-          />{" "}
-        </section>
-
-        <hr />
-        <PuppyContainer
-          puppies={this.filteredPuppies()}
-          houses={this.state.houses}
-          houseChange={this.houseChange}
-        />
-        <HouseContainer
-          puppies={this.filteredPuppies()}
-          houses={this.state.houses}
-          houseChange={this.houseChange}
-
-        />
+        <center>
+          <NewPuppyForm addPuppy={this.addPuppy} houses={this.state.houses} />
+          <section className="search-form">
+            <input
+              type="text"
+              name="searchTerm"
+              placeholder="Search the Pups"
+              value={this.state.searchTerm}
+              onChange={this.handleChange}
+            />{" "}
+          </section>
+        </center>
+        <div className="app">
+          <PuppyContainer
+            puppies={this.filteredPuppies()}
+            houses={this.state.houses}
+            houseChange={this.houseChange}
+          />
+          <HouseContainer
+            puppies={this.filteredPuppies()}
+            houses={this.state.houses}
+            houseChange={this.houseChange}
+          />
+        </div>
       </div>
     );
   }

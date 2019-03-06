@@ -1,24 +1,23 @@
-import React from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Typography from "@material-ui/core/Typography";
 const NavBar = () => {
-	return (
+  return (
     <div>
       <AppBar position="static">
+        <br />
         <center>
           {" "}
           <img
             src="https://i.imgur.com/N8ZfaDL.png"
             alt="Dogwarts"
-            width="300px"
+            width="350px"
           />
-        </center>
-        <Toolbar>
           <Typography variant="title" color="inherit" />
-        </Toolbar>
+          <h1 className="navBar">Hairy Pupper and the Chamber of Milkbones</h1>
+        </center>
       </AppBar>
     </div>
   );
-}
+};
 export default NavBar;

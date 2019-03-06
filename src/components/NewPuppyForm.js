@@ -5,8 +5,7 @@ class NewPuppyForm extends Component {
     name: "",
     house: "",
     image1: "",
-    image2: "",
-    age: ""
+    image2: ""
   };
 
   handleInput = e => {
@@ -22,16 +21,16 @@ class NewPuppyForm extends Component {
   };
 
   clearForm = () => {
-    this.setState({ name: "", house: "", image1: "", image2: "", age: "" });
+    this.setState({ name: "", house: "", image1: "", image2: "" });
   };
 
   render() {
     return (
-      <section className="new-character">
-        <h2>New Pup</h2>
-        <form onSubmit={this.handleSubmit}>
+      <section className="newPup">
+        <h2 className="pottify">New Pup</h2>
+        <form className='pad' onSubmit={this.handleSubmit}>
           <div>
-            <label>Name</label>
+            <label className="bob">Name: </label>
             <input
               required
               onChange={this.handleInput}
@@ -41,17 +40,7 @@ class NewPuppyForm extends Component {
             />
           </div>
           <div>
-            <label>Age</label>
-            <input
-              required
-              onChange={this.handleInput}
-              type="number"
-              name="age"
-              value={this.state.age}
-            />
-          </div>
-          <div>
-            <label>Image 1</label>
+            <label className="bob">Image 1: </label>
             <input
               required
               onChange={this.handleInput}
@@ -61,7 +50,7 @@ class NewPuppyForm extends Component {
             />
           </div>
           <div>
-            <label>Image 2</label>
+            <label className="bob">Image 2: </label>
             <input
               required
               onChange={this.handleInput}
@@ -71,7 +60,7 @@ class NewPuppyForm extends Component {
             />
           </div>
           <div>
-            <label>House</label>
+            <label className="bob">House: </label>
             <select
               name="house"
               value={this.state.house}
