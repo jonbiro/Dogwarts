@@ -15,7 +15,7 @@ class App extends Component {
   componentDidMount() {
     fetch("http://localhost:3005/puppies")
       .then(res => res.json())
-      .then(puppies => this.setState({puppies}));
+      .then(puppies => this.setState({ puppies }));
 
     fetch("http://localhost:3005/houses")
       .then(res => res.json())
@@ -28,10 +28,11 @@ class App extends Component {
   }
 
   houseChange = (puppy, newHouse) => {
+  	// console.log((newHouse))
     fetch(`http://localhost:3005/puppies/${puppy.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ house: newHouse })
+      body: JSON.stringify({ house_id: newHouse })
     })
       .then(res => res.json())
       .then(updatedPuppy => {
@@ -47,9 +48,43 @@ class App extends Component {
   };
 
   addPuppy = puppyObj => {
-  	console.log(puppyObj)
-  	let houseId = () => {if(puppyObj.house === 'Gryffindog'){return {name:puppyObj.name, house_id: 1, age:puppyObj.age, image1:puppyObj.image1, image2:puppyObj.image2}}else if (puppyObj.house === 'Rufflepuff'){return {name:puppyObj.name, house_id: 2, age:puppyObj.age, image1:puppyObj.image1, image2:puppyObj.image2}}else if(puppyObj.house === 'Roverclaw'){return {name:puppyObj.name, house_id: 3, age:puppyObj.age, image1:puppyObj.image1, image2:puppyObj.image2}}else if(puppyObj.house === 'Slobberin'){return {name:puppyObj.name, house_id: 4, age:puppyObj.age, image1:puppyObj.image1, image2:puppyObj.image2}}}
-	    fetch("http://localhost:3005/puppies/", {
+    console.log(puppyObj);
+    let houseId = () => {
+      if (puppyObj.house === "Gryffindog") {
+        return {
+          name: puppyObj.name,
+          house_id: 1,
+          age: puppyObj.age,
+          image1: puppyObj.image1,
+          image2: puppyObj.image2
+        };
+      } else if (puppyObj.house === "Rufflepuff") {
+        return {
+          name: puppyObj.name,
+          house_id: 2,
+          age: puppyObj.age,
+          image1: puppyObj.image1,
+          image2: puppyObj.image2
+        };
+      } else if (puppyObj.house === "Roverclaw") {
+        return {
+          name: puppyObj.name,
+          house_id: 3,
+          age: puppyObj.age,
+          image1: puppyObj.image1,
+          image2: puppyObj.image2
+        };
+      } else if (puppyObj.house === "Slobberin") {
+        return {
+          name: puppyObj.name,
+          house_id: 4,
+          age: puppyObj.age,
+          image1: puppyObj.image1,
+          image2: puppyObj.image2
+        };
+      }
+    };
+    fetch("http://localhost:3005/puppies/", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(houseId())
@@ -70,11 +105,10 @@ class App extends Component {
   };
 
   filteredPuppies = () => {
-    return this.state.puppies.filter(char => {
+    return this.state.puppies.filter(pup => {
       return (
-        char.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
-        char.house.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-	      
+        pup.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+        pup.house.toLowerCase().includes(this.state.searchTerm.toLowerCase())
       );
     });
   };
@@ -82,13 +116,15 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-	      <NavBar /><br />
+        <NavBar />
+        <br />
         <NewPuppyForm addPuppy={this.addPuppy} houses={this.state.houses} />
         <hr />
         <section className="search-form">
           <input
             type="text"
             name="searchTerm"
+            placeholder="Search the Pups"
             value={this.state.searchTerm}
             onChange={this.handleChange}
           />{" "}
@@ -103,6 +139,8 @@ class App extends Component {
         <HouseContainer
           puppies={this.filteredPuppies()}
           houses={this.state.houses}
+          houseChange={this.houseChange}
+
         />
       </div>
     );

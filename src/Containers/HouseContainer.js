@@ -13,6 +13,7 @@ export default class HouseContainer extends React.Component {
           (<House
             key={house}
             house={house}
+            houses={this.props.houses}
             puppies={this.sortHouse(house)}
           />))
         }

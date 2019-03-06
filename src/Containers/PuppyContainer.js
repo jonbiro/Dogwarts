@@ -14,6 +14,7 @@ export default class PuppyContainer extends React.Component {
         renderAdditionalInfo={this.renderAdditionalInfo}
         houses={this.props.houses}
         houseChange={this.props.houseChange}
+        
       />)
     )
 

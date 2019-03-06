@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import UpdateForm from "./UpdateForm";
 
 class PuppyCard extends React.Component {
@@ -14,15 +14,15 @@ class PuppyCard extends React.Component {
   };
 
   render() {
+  	// console.log(this.props)
     return (
       <div>
         <Card image={this.props.image} header={this.props.puppy.name} onClick={this.handleHouseClick} />
 
         <div>
-          {this.state.showForm ? (
-            <UpdateForm />
-          ) : (
-           null
+          {this.state.showForm && !this.props.nope ? (
+            <UpdateForm houses={this.props.houses} puppy={this.props.puppy} handleHouseClick={this.handleHouseClick} houseChange={this.props.houseChange}/>
+          ) : (null
           )}
         </div>
       </div>
