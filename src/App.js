@@ -4,6 +4,7 @@ import HouseContainer from "./Containers/HouseContainer";
 import PuppyContainer from "./Containers/PuppyContainer";
 import NewPuppyForm from "./Components/NewPuppyForm";
 import NavBar from "./Components/NavBar";
+import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -107,8 +108,8 @@ class App extends Component {
   filteredPuppies = () => {
     return this.state.puppies.filter(pup => {
       return (
-        pup.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
-        pup.house.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        pup.name.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()) ||
+        pup.house.toLowerCase().startsWith(this.state.searchTerm.toLowerCase())
       );
     });
   };
@@ -118,30 +119,56 @@ class App extends Component {
       <div>
         <NavBar />
         <br />
-        <center>
-          <NewPuppyForm addPuppy={this.addPuppy} houses={this.state.houses} />
-          <section className="search-form">
-            <input
-              type="text"
-              name="searchTerm"
-              placeholder="Search the Pups"
-              value={this.state.searchTerm}
-              onChange={this.handleChange}
-            />{" "}
-          </section>
-        </center>
-        <div className="app">
-          <PuppyContainer
-            puppies={this.filteredPuppies()}
-            houses={this.state.houses}
-            houseChange={this.houseChange}
+        <Switch>
+	        <Route
+		        path="/:house"
+	            render={(routerProps) => {
+	            	let foo = routerProps.match.params.house
+		            let bar = this.state.houses.find(house1 => house1 === foo)
+		            console.log(bar)
+		           return <div className="app"> <HouseContainer
+			            puppies={this.filteredPuppies()}
+			            houses={[bar]}
+			            houseChange={this.houseChange}
+		           /></div>
+	            }}
+	        />
+          <Route
+            path="/"
+            render={(routerProps) => {
+              return (<>
+		              {/*{routerProps.location.pathname === `/Gryffindog`}*/}
+	              <center>
+		              <NewPuppyForm addPuppy={this.addPuppy} houses={this.state.houses} />
+		              <section className="search-form">
+			              <input
+				              type="text"
+				              name="searchTerm"
+				              placeholder="Search the Pups"
+				              value={this.state.searchTerm}
+				              onChange={this.handleChange}
+			              />{" "}
+		              </section>
+	              </center>
+	              <div className="app">
+		            <PuppyContainer
+	            puppies={this.filteredPuppies()}
+	            houses={this.state.houses}
+	            houseChange={this.houseChange}
+	            />
+	            <HouseContainer
+		            puppies={this.filteredPuppies()}
+		            houses={this.state.houses}
+		            houseChange={this.houseChange}
+	            />
+	            </div>
+              </>
+              
+              )
+            }}
           />
-          <HouseContainer
-            puppies={this.filteredPuppies()}
-            houses={this.state.houses}
-            houseChange={this.houseChange}
-          />
-        </div>
+
+        </Switch>
       </div>
     );
   }

@@ -35,7 +35,7 @@ class UpdateForm extends React.Component {
         >
           {this.renderOptions()}
         </select>
-        <button onClick={this.props.handleHouseClick}>Submit</button>
+        <button onClick={this.props.handleHouseClick}>Done</button>
       </div>
     );
   }
