@@ -1,5 +1,5 @@
 
-[Youtube](https://i.imgur.com/eFhI2Lv.jpg)(https://youtu.be/Qz10w_xJxsY)
+![Youtube](https://i.imgur.com/eFhI2Lv.jpg)(https://youtu.be/Qz10w_xJxsY)
 
 ## Available Scripts
 
