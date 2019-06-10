@@ -1,5 +1,6 @@
 import React from "react";
 import PuppyCard from "./PuppyCard";
+import {Link} from "react-router-dom";
 
 const House = props => {
   let puppies = props.puppies.map(puppy => (
@@ -20,23 +21,26 @@ const House = props => {
     "https://pm1.narvii.com/6577/6b1c74fd8ce0e51798a2f3afa309979d53349626_hq.jpg";
   let slob =
     "https://pm1.narvii.com/6577/4eeb4b1cae51d6e14ac015fe0bd6e26bda64f786_hq.jpg";
-
+  
+	// let click = (house) => this.props.history.push(`/${house}`);
+	
+  
   const bob = () => {
     if (props.house === "Gryffindog") {
       return (
-        <img className="roundme" width="400px" src={gryf} alt={props.house} />
+	      <Link to='/Gryffindog'><img className="roundme" width="400px" src={gryf} alt={props.house}  /></Link>
       );
     } else if (props.house === "Roverclaw") {
       return (
-        <img className="roundme" width="400px" src={rover} alt={props.house} />
+	      <Link to='/Roverclaw'><img className="roundme" width="400px" src={rover} alt={props.house} /></Link>
       );
     } else if (props.house === "Slobberin") {
       return (
-        <img className="roundme" width="400px" src={slob} alt={props.house} />
+	      <Link to='/Slobberin'><img className="roundme" width="400px" src={slob} alt={props.house}  /></Link>
       );
     } else if (props.house === "Rufflepuff") {
       return (
-        <img className="roundme" width="400px" src={ruff} alt={props.house} />
+	      <Link to='/Rufflepuff'> <img className="roundme" width="400px" src={ruff} alt={props.house}  /></Link>
       );
     }
   };
